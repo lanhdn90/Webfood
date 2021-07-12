@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "ThemTk";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@model WebOnline.Models.TaiKhoan
+<h1 class="page-header">
+    <a href="/QLTaiKhoan/Index" class="btn btn-outline btn-primary">Quay lại</a>
+</h1>
+<div class="row" style="margin-bottom: 50px">
+
+    <div class="col-md-12">
+        @using (Html.BeginForm("SuaTk", "QLTaiKhoan", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmThem" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.TaiKhoan1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TaiKhoan1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TaiKhoan1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoleID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.RoleID, (IEnumerable<SelectListItem>)ViewBag.roleList, "CHỌN QUYỀN", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RoleID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div style="float: left">
+                <input type="submit" class="btn btn-outline btn-primary" value="Cập nhật" />
+                <input type="reset" class="btn btn-outline btn-primary" value="Làm lại" />
+            </div>
+
+        }
+    </div>
+
+</div>
+
+
+

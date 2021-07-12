@@ -1,0 +1,42 @@
+﻿@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<div class="cart box_1">
+    <ul class="nav navbar-top-links navbar-right">
+
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="width:120px">
+                <i class="fa fa-user fa-fw"></i> @Session["TenTk"] <i class="fa fa-caret-down"></i>
+            </a>
+            <ul style="height: 110px; background:white ; width:200px" class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="/Login/DangXuat"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+                </li>
+                <li>
+                    <a href="/TTCN/Index"><i class="fa fa-user fa-fw"></i> Thông tin cá nhân</a>
+                </li>
+                <li>
+                    <a href="/TTCN/Index1/0"><i class="fa fa-user fa-fw"></i> Danh sách Hóa đơn</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <div class="clearfix"> </div>
+</div>
+
+<div class="cart box_1">
+    <a href="/GioHang/Index">
+        <img src="/images/online-shopping-cart.png" alt="" />
+    </a>
+    <p>
+        <a href="/GioHang/Index" class="simpleCart_empty">Giỏ hàng</a>
+    </p>
+    <div class="clearfix"> </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>*@
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>

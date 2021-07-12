@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+    DatabaseEntities shop = new DatabaseEntities();
+
+}
+@using WebOnline.Models
+@model List<WebOnline.Models.TinTuc>
+
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<h1 class="page-header">
+    <a href="/QLTinTuc/ThemTin" class="btn btn-outline btn-primary">Thêm</a>
+</h1>
+<div class="dataTable_wrapper">
+    <table class="table table-striped table-bordered table-hover" id="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tiêu đề </th>
+                <th>Ảnh</th>
+                <th>Ngày đăng</th>
+                <th>Người đăng</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    <tr class="even gradeA">
+                        <td>@Model[i].MaTin</td>
+                        <td>@Model[i].TieuDe</td>
+                        <td><img src="@Model[i].Anh" style="width: 50px; height: 50px;" /></td>
+                        <td>@Model[i].NgayDang</td>
+                        <td>@Model[i].MaTaiKhoan</td>
+                        <td><a href="/QLTinTuc/SuaTin/@Model[i].MaTin" class="btn btn-outline btn-primary">Sửa</a></td>
+                        <td><a href="/QLTinTuc/XoaTin/@Model[i].MaTin" class="btn btn-outline btn-primary">Xóa</a></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="odd gradeA">
+
+                        <td>@Model[i].MaTin</td>
+                        <td>@Model[i].TieuDe</td>
+                        <td><img src="@Model[i].Anh" style="width: 50px; height: 50px;" /></td>
+                        <td>@Model[i].NgayDang</td>
+                        <td>@Model[i].MaTaiKhoan</td>
+                        <td><a href="/QLTinTuc/SuaTin/@Model[i].MaTin" class="btn btn-outline btn-primary">Sửa</a></td>
+                        <td><a href="/QLTinTuc/XoaTin/@Model[i].MaTin" class="btn btn-outline btn-primary">Xóa</a></td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+

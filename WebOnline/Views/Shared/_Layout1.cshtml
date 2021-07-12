@@ -1,0 +1,214 @@
+﻿@using WebOnline.Models
+
+@{
+    DatabaseEntities shop = new DatabaseEntities();
+    var loaiSp = shop.LoaiSP.ToList().Skip(0).Take(14);
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - WebSite Bán Hàng</title>
+    <link href="~/Content/memenu.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Content/AdminLTE.css" rel="stylesheet" />
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/main-stylesheet.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="header-bottom">
+        <div class="container">
+            <div class="header">
+                <div class="col-md-9 header-left">
+                    <div class="top-nav">
+                        <ul class="memenu skyblue">
+                            <li class="active"><a href="/Home/Index1">Trang chủ</a></li>
+                            <li class="grid">
+                                <a href="/Home/ChuyenMuc">Sản phẩm</a>
+                                <div class="mepanel">
+                                    <div class="row">
+                                        <div class="col1 me-one">
+                                            <h4><a href="/Home/ChiTietChuyenMuc/@loaiSp.Skip(0).Take(1).First().MaLoai">@loaiSp.Skip(0).Take(1).First().TenLoaiSP</a></h4>
+                                            @foreach (var item in loaiSp.Skip(1).Take(4))
+                                            {
+
+                                                <ul>
+                                                    <li><a href="/Home/ChiTietChuyenMuc/@item.MaLoai">@item.TenLoaiSP</a></li>
+
+                                                </ul>
+                                            }
+                                        </div>
+                                        @if (loaiSp.Count() > 5)
+                                        {
+                                            <div class="col1 me-one">
+                                                <h4><a href="/Home/ChiTietChuyenMuc/@loaiSp.Skip(5).Take(6).First().MaLoai">@loaiSp.Skip(5).Take(6).First().TenLoaiSP</a></h4>
+
+                                                @foreach (var item in loaiSp.Skip(6).Take(9))
+                                                {
+
+                                                    <ul>
+                                                        <li><a href="/Home/ChiTietChuyenMuc/@item.MaLoai">@item.TenLoaiSP</a></li>
+
+                                                    </ul>
+                                                }
+                                            </div>
+                                        }
+                                        @if (loaiSp.Count() > 10)
+                                        {
+                                            <div class="col1 me-one">
+                                                <h4><a href="/Home/ChiTietChuyenMuc/@loaiSp.Skip(10).Take(11).First().MaLoai">@loaiSp.Skip(10).Take(11).First().TenLoaiSP</a></h4>
+
+                                                @foreach (var item in loaiSp.Skip(11).Take(14))
+                                                {
+
+                                                    <ul>
+                                                        <li><a href="/Home/ChiTietChuyenMuc/@item.MaLoai">@item.TenLoaiSP</a></li>
+
+                                                    </ul>
+                                                }
+
+                                            </div>
+
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="grid">
+                                <a href="/Home/TinTuc">Tin tức</a>
+                            </li>
+                            <li class="grid">
+                                <a href="#">Liên hệ</a>
+                            </li>
+                            <li class="grid">
+                                <a href="/Login/dangky/"> Đăng Ký</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-3 header-right">
+                    @Html.Partial("GioHang1")
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!--bottom-header-->
+    <!--banner-starts-->
+    @*@Html.Partial("Slide")*@
+    @RenderBody()
+    <div style="padding-bottom: 25px;border-bottom: 1px solid #f0f0f0;margin-bottom: 25px;"></div>
+    <!--product-end-->
+    <!--information-starts-->
+    <div class="information">
+        <div class="container">
+            <div class="infor-top">
+                <div class="col-md-3 infor-left">
+                    <h3>Theo dõi</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/"><span class="fb"></span><h6>Facebook</h6></a></li>
+                        <li><a href="https://twitter.com/?lang=vi"><span class="twit"></span><h6>Twitter</h6></a></li>
+                        <li><a href="https://www.google.com.vn/?hl=vi"><span class="google"></span><h6>Google+</h6></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 infor-left">
+                    <h3>Thông tin</h3>
+                    <ul>
+                        <li><a href="#"><p>Đặc biệt</p></a></li>
+                        <li><a href="#"><p>Sản phẩm mới</p></a></li>
+                        <li><a href="#"><p>Cửa hàng</p></a></li>
+                        <li><a href="#"><p>Liên hệ</p></a></li>
+                        <li><a href="#"><p>Bán chạy</p></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 infor-left">
+                    <h3>Dịch vụ</h3>
+                    <ul>
+                        <li><a href="#"><p>Hướng dẫn mua hàng</p></a></li>
+                        <li><a href="#"><p>Chính sách mua hàng</p></a></li>
+                        <li><a href="#"><p>Thông tin khuyến mại</p></a></li>
+                        <li><a href="#"><p>Chính sách trả lại</p></a></li>
+                       
+                    </ul>
+                </div>
+                <div class="col-md-3 infor-left">
+                    <h3>Thông tin cửa hàng</h3>
+                    <h4>
+                        Website bán thực phẩm,
+                        <span>Đà Nẵng</span>
+                        ....
+                    </h4>
+                    <h5>+905865877</h5>
+                    <p><a href="mailto:Syluan82@gmail.com">Lanhdn90@gmail.com</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--information-end-->
+    <!--footer-starts-->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-top">
+
+                <div class="col-md-6 footer-right pull-right">
+                    <p>© 2021 Website bán thực phẩm. All Rights Reserved | Design by  <a href="#" target="_blank">Lanh Huynh</a> </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.easydropdown.js"></script>
+    <script src="~/Scripts/memenu.js"></script>
+
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <script src="~/Scripts/simpleCart.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+
+        <script src="~/Scripts/sb-admin-2.js"></script>*@
+
+    <script>$(document).ready(function () { $(".memenu").memenu(); });</script>
+
+    <script>
+        $(window).load(function () {
+            //$(function () {
+            // Slideshow 4
+            $("#slider4").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
+
+        });
+            //});
+    </script>
+</body>
+</html>
+

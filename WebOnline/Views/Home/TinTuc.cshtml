@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    DatabaseEntities shop = new DatabaseEntities();
+}
+@using PagedList
+@using PagedList.Mvc
+@using WebOnline.Models
+@model IPagedList<TinTuc>
+
+<div class="product">
+    <div class="container">
+        <div class="row" style="padding: 6em 0px;">
+            <div class="col-md-8 ">
+                <div class="content-panel-title">
+                    <h2>Tin mới</h2>
+                </div>
+                <div class="content-panel-body article-list">
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            <div class="item-header">
+                                <a href="/Home/ChiTietTinTuc/@item.MaTin">
+
+                                    <img src="@item.Anh" alt="" style="width: 326px; height: 220px">
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <h3>
+                                    <a href="/Home/ChiTietTinTuc/@item.MaTin">@item.TieuDe</a>
+                                </h3>
+                                <span class="item-meta">
+                                    <a href="#"><i class="fa fa-comment-o"></i>@shop.TaiKhoan.Where(t => t.MaTaiKhoan == item.MaTaiKhoan).SingleOrDefault().TaiKhoan1</a>
+                                    <a href="#"><i class="fa fa-clock-o"></i>@item.NgayDang</a>
+                                </span>
+                                <a href="/Home/ChiTietTinTuc/@item.MaTin" class="read-more-button">Chi tiết<i class="fa fa-mail-forward"></i></a>
+                            </div>
+                        </div>
+
+                    }
+
+
+                </div>
+                <div class="content-panel-body  text-center">
+                    @Html.PagedListPager(Model, page => Url.Action("TinTuc", new { page }))
+                </div>
+                <div style="padding-bottom: 25px; border-bottom: 1px solid #f0f0f0; margin-bottom: 25px;"></div>
+
+            </div>
+
+            <div class="col-md-4 ">
+                <aside class="sidebar">
+
+                    @Html.Partial("SanPhamMoi")
+
+                </aside>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@using WebOnline.Models
+@model DonHangViewModel
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<div class="page-header">
+    <a href="#tab_1-1" data-toggle="tab" class="btn btn-outline btn-primary">Đã Duyệt</a>
+
+    <a href="#tab_2-2" data-toggle="tab" class="btn btn-outline btn-primary">Chưa Duyệt</a>
+
+
+</div>
+<div class="dataTable_wrapper tab-content">
+
+    <div class="tab-pane active" id="tab_1-1">
+        <table class="table table-striped table-bordered table-hover" id="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Khách hàng</th>
+                    <th>Nơi giao</th>
+                    <th>Thời gian</th>
+                    <th>Tổng</th>
+                    <th>Chi tiết</th>
+
+                    @*<th>Xóa</th>*@
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Model.DonHangDaDuyet.Count; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        <tr class="even gradeA">
+                            <td>@Model.DonHangDaDuyet[i].MaHoaDon</td>
+                            <td>@Model.DonHangDaDuyet[i].TenKhachHang</td>
+                            <td>@Model.DonHangDaDuyet[i].DiaChiGiaoHang</td>
+                            <td>@Model.DonHangDaDuyet[i].ThoiGianGiaoHang</td>
+                            <td>@double.Parse(@Model.DonHangDaDuyet[i].TongTien.ToString()).ToString("##,###") VNĐ</td>
+                            <td><a href="/QLHoaDon/ChiTietHd/@Model.DonHangDaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Chi tiết</a></td>
+
+                            @*<td><a href="/QLHoaDon/XoaHd/@Model.DonHangDaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Xóa</a></td>*@
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="odd gradeA">
+                            <td>@Model.DonHangDaDuyet[i].MaHoaDon</td>
+                            <td>@Model.DonHangDaDuyet[i].TenKhachHang</td>
+                            <td>@Model.DonHangDaDuyet[i].DiaChiGiaoHang</td>
+                            <td>@Model.DonHangDaDuyet[i].ThoiGianGiaoHang</td>
+                            <td>@double.Parse(@Model.DonHangDaDuyet[i].TongTien.ToString()).ToString("##,###") VNĐ</td>
+                            <td><a href="/QLHoaDon/ChiTietHd/@Model.DonHangDaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Chi tiết</a></td>
+
+                            @*<td><a href="/QLHoaDon/XoaHd/@Model.DonHangDaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Xóa</a></td>*@
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="tab-pane" id="tab_2-2">
+        <table class="table table-striped table-bordered table-hover" id="table2">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Khách hàng</th>
+                    <th>Địa chỉ</th>
+                    <th>Email</th>
+                    <th>SĐT</th>
+                    <th>Nơi giao</th>
+                    <th>Thời gian</th>
+                    <th>Tổng</th>
+                    <th>Chi tiết</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (int i = 0; i < Model.DonHangChuaDuyet.Count; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        <tr class="even gradeA">
+                            <td>@Model.DonHangChuaDuyet[i].MaHoaDon</td>
+                            <td>@Model.DonHangChuaDuyet[i].TenKhachHang</td>
+                            <td>@Model.DonHangChuaDuyet[i].DiaChi</td>
+                            <td>@Model.DonHangChuaDuyet[i].Email</td>
+                            <td>@Model.DonHangChuaDuyet[i].SDT</td>
+                            <td>@Model.DonHangChuaDuyet[i].DiaChiGiaoHang</td>
+                            <td>@Model.DonHangChuaDuyet[i].ThoiGianGiaoHang</td>
+                            <td>@Model.DonHangChuaDuyet[i].TongTien</td>
+                            <td><a href="/QLHoaDon/ChiTietHd/@Model.DonHangChuaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Chi tiết</a></td>
+
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr class="odd gradeA">
+
+                            <td>@Model.DonHangChuaDuyet[i].MaHoaDon</td>
+                            <td>@Model.DonHangChuaDuyet[i].TenKhachHang</td>
+                            <td>@Model.DonHangChuaDuyet[i].DiaChi</td>
+                            <td>@Model.DonHangChuaDuyet[i].Email</td>
+                            <td>@Model.DonHangChuaDuyet[i].SDT</td>
+                            <td>@Model.DonHangChuaDuyet[i].DiaChiGiaoHang</td>
+                            <td>@Model.DonHangChuaDuyet[i].ThoiGianGiaoHang</td>
+                            <td>@Model.DonHangChuaDuyet[i].TongTien</td>
+                            <td><a href="/QLHoaDon/ChiTietHd/@Model.DonHangChuaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Chi tiết</a></td>
+                            @*<td><a href="/QLHoaDon/Duyet/@Model.DonHangChuaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Duyệt</a></td>
+
+                                <td><a href="/QLHoaDon/XoaHd/@Model.DonHangChuaDuyet[i].MaHoaDon" class="btn btn-outline btn-primary">Xóa</a></td>*@
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/sb-admin-2.js"></script>*@
+
+
+
+
+
+

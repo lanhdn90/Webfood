@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Sữa Thông tin Sản Phẩm";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@model WebOnline.Models.SanPham
+<h1 class="page-header">
+    <a href="/QLSanPham/Index" class="btn btn-outline btn-primary">Quay lại</a>
+</h1>
+<div class="row" style="margin-bottom: 50px">
+
+    <div class="col-md-12">
+        @using (Html.BeginForm("SuaSp", "QLSanPham", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmThem" }))
+        {
+            <div class="form-group input-group" style="display: block;">
+                <label>Tên sản phẩm</label>
+                @Html.TextBoxFor(m => m.TenSP, new { @class = "form-control", placeholder = "Tên sản phẩm", required = "required" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Nhà Cung Cấp</label>
+                @Html.DropDownListFor(m => m.MaNCC, (List<SelectListItem>)ViewBag.NCC, "CHỌN NHÀ CUNG CẤP", new { @class = "form-control ", required = "required" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Loại Hàng</label>
+                @Html.DropDownListFor(m => m.MaLoai, (List<SelectListItem>)ViewBag.Loai, "CHỌN LOẠI HÀNG", new { @class = "form-control ", required = "required" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Số lượng</label>
+                @Html.TextBoxFor(m => m.SoLuong, new { @class = "form-control", type = "number", placeholder = "Số lượng", required = "required" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Giá nhập</label>
+                @Html.TextBoxFor(m => m.GiaNhap, new { @class = "form-control", type = "number", placeholder = "Giá nhập", required = "required" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Giá bán</label>
+                @Html.TextBoxFor(m => m.GiaBan, new { @class = "form-control", type = "number", placeholder = "Giá bán", required = "required" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Ảnh</label>
+                <input type="file" name="file" class="form-control" />
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Mô tả</label>
+                @Html.TextBoxFor(m => m.MoTa, new { @class = "form-control", placeholder = "Mô tả" })
+            </div>
+            <div class="form-group input-group" style="display: block;">
+                <label>Chi tiết</label>
+                @Html.TextAreaFor(m => m.ChiTiet, new { id = "chitiet", @class = "form-control", type = "number", placeholder = "Chi tiết" })
+            </div>
+            <div style="float: left">
+                <input type="submit" class="btn btn-outline btn-primary" value="Cập Nhật" />
+                <input type="reset" class="btn btn-outline btn-primary" value="Làm lại" />
+            </div>
+        }
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/ckeditor/ckeditor.js"></script>
+<script src="~/ckfinder/ckfinder.js"></script>
+<Script>
+    CKEDITOR.replace('chitiet');
+</Script>
+

@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "VC";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    var hoadon = (List<WebOnline.Models.HoaDon>)ViewBag.listHD;
+    var chiTHD = (List<WebOnline.Models.ChiTietHoaDon>)ViewBag.listCTHD;
+    DatabaseEntities shop = new DatabaseEntities();
+}
+
+@using WebOnline.Models;
+@model List<WebOnline.Models.ChiTietHoaDon>
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">*@
+    <link href="~/Content/Home/index.css" rel="stylesheet" />
+<body>
+    <form action="form-group form control">
+        <div class="row">
+            <div class="col-md-4">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Mã Hóa Đơn</th>
+                            <th scope="col">Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in hoadon)
+                        {
+                            <tr>
+                                <td><a href="/TTCN/Index1/@item.MaHoaDon ">@item.MaHoaDon</a></td>
+                                <td data-th="Subtotal" class="text-center">@double.Parse(@item.TongTien.ToString()).ToString("##,###") VNĐ</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="col-md-3">Sản phẩm</th>
+                            <th class="cod">Giá sản phẩm</th>
+                            <th class="cod"> Số lượng</th>
+                            <th class="cod">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item1 in chiTHD)
+                        {
+                            <tr>
+                                <td scope="row">
+                                    <div scope="row">
+                                        <div class="col-sm-4 hidden-xs">
+                                            <img src="@shop.SanPham.SingleOrDefault(t => t.MaSP == item1.MaSP).Anh" alt="..." class="img-responsive" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <h4 class="nomargin">@shop.SanPham.SingleOrDefault(t => t.MaSP == item1.MaSP).TenSP</h4>
+
+                                        </div>
+                                    </div>
+                                    <div scope="row">
+                                        <div class="col-sm-2 hidden-xs">
+                                <td>@shop.SanPham.SingleOrDefault(t => t.MaSP == item1.MaSP).GiaBan</td>
+                </div>
+                
+                    <div class="col-sm-2 hidden-xs">
+                        <td>@item1.SoLuong</td>
+                        <td data-th="Subtotal" class="text-center">@double.Parse(@item1.TongTien.ToString()).ToString("##,###") VNĐ</td>
+                    </div>
+                        </tr>
+                    }
+
+                        </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+

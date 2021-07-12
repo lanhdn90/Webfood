@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietTinTuc";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    DatabaseEntities shop = new DatabaseEntities();
+
+}
+@using WebOnline.Models
+@model WebOnline.Models.TinTuc
+<div class="product" style="padding: 6em 0px;">
+    <div class="container">
+        <div class="content-panel-title">
+
+            <h2>@Model.TieuDe </h2>
+        </div>
+        <div class="product-top text-center">
+            @Html.Raw(Model.NoiDung)
+        </div>
+
+        <div class="pull-right">
+            <a href="#" class="right">@Model.NgayDang,@shop.TaiKhoan.Where(t => t.MaTaiKhoan == Model.MaTaiKhoan).SingleOrDefault().TaiKhoan1</a>
+        </div>
+        <div class="page-header"></div>
+        <div class="tab-pane" id="product-binhluan">
+            <div class="fb-like" data-width="1200" data-href="@Request.Url.AbsoluteUri" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-comments" data-width="1200" data-href="@Request.Url.AbsoluteUri" data-numposts="5"></div>
+        </div>
+    </div>
+</div>
+
+
+<div id="fb-root"></div>
+<script type="text/javascript">
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.6";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+

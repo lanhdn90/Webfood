@@ -1,0 +1,29 @@
+﻿@model List<WebOnline.Models.Menu>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Content/metisMenu.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/font-awesome.css" />
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<nav id="sidebar">
+    <ul class="nav" id="side-menu">
+        @foreach (var item in Model)
+        {
+            <li>
+                <a href="@item.Link"><i class="@item.Icon"></i>@item.TextMenu</a>
+            </li>
+        }
+
+
+    </ul>
+
+</nav>
+<div class=" back-to-top"><i class="fas fa-angle-double-right"></i></div>
+<div class=" back-to-top"><i class="fas fa-angle-double-right"></i></div>
+<script src="https://kit.fontawesome.com/e00695e77f.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/metisMenu.js"></script>
+<script src="~/Scripts/sb-admin-2.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>

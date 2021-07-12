@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Thêm Loại Sản Phẩm";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+@model WebOnline.Models.LoaiSP
+<h1 class="page-header">
+    <a href="/QLHang/Index" class="btn btn-outline btn-primary">Quay lại</a>
+</h1>
+<div class="row" style="margin-bottom: 50px">
+
+    <div class="col-md-12">
+        @using (Html.BeginForm("ThemHang", "QLLoaiSP", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmThem" }))
+        {
+            <div class="form-group input-group" style="display: block;">
+                <label>Tên Loại Sản phẩm</label>
+                @Html.TextBoxFor(m => m.TenLoaiSP, new { @class = "form-control", placeholder = "Tên hãng", required = "required" })
+            </div>
+
+
+            <div style="float: left">
+                <input type="submit" class="btn btn-outline btn-primary" value="Thêm" />
+                <input type="reset" class="btn btn-outline btn-primary" value="Làm lại" />
+            </div>
+        }
+    </div>
+
+</div>

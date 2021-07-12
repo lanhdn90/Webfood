@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    DatabaseEntities shop = new DatabaseEntities();
+}
+
+@using WebOnline.Models
+@model List<WebOnline.Models.LoaiSP>
+<!--banner-ends-->
+<!--Slider-Starts-Here-->
+<!--End-slider-script-->
+<!--about-starts-->
+<div class="about">
+    <div class="container">
+
+        <div class="about-top grid-1">
+            <div class="col-md-4 about-left">
+                <figure class="effect-bubba">
+                    <img class="img-responsive" src="~/images/banner/hat.jpg" alt="" />
+                    <figcaption>
+                        <h4>Thực phẩm khô</h4>
+                        <p>Đả bảo chất lượng không đổi</p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4 about-left">
+                <figure class="effect-bubba">
+                    <img class="img-responsive" src="~/images/banner/rau-xanh.jpg" alt="" />
+                    <figcaption>
+                        <h4>Rau sạch Organic</h4>
+                        <p>100% không chất bảo quản</p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col-md-4 about-left">
+                <figure class="effect-bubba">
+                    <img class="img-responsive" src="~/images/banner/trai-cay.jpg" alt="" />
+                    <figcaption>
+                        <h4>Trái cây tươi</h4>
+                        <p>Đạt tiêu chuẩn quốc tế</p>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--about-end-->
+<!--product-starts-->
+
+<div class="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ">
+
+                @foreach (var item in Model)
+                {
+                    var dsSanPham = shop.SanPham.Where(s => s.MaLoai == item.MaLoai);
+                    <div class="content-panel-title">
+                        <a href="/Home/ChiTietChuyenMuc/@item.MaLoai" class="right">Xem thêm</a>
+                        <h2>@item.TenLoaiSP </h2>
+                    </div>
+                    <div class="product-top" style="margin-bottom: 20px">
+                        <div class="product-one">
+                            @foreach (var sp in dsSanPham.ToList().Skip(0).Take(3))
+                            {
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem">
+                                        <a href="/Home/ChiTietSp/@sp.MaSP" class="mask"><img class="img-responsive-2 zoom-img" src="@sp.Anh" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <h3>@sp.TenSP</h3>
+
+                                            <h4><a class="item_add" href="javascript:;" onclick="ThemGioHang(@sp.MaSP)"><i></i></a> <span class="item_price">@double.Parse(sp.GiaBan.ToString()).ToString("##,###") VNĐ</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                }
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4 ">
+                <aside class="sidebar">
+                    <div class="search-bar">
+                        <form action="/Home/TimKiem" method="GET">
+                            <h3>
+
+                                <input type="text" name="search" value="Tìm kiếm" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tìm kiếm';}">
+                                <input type="submit" value="">
+                            </h3>
+                        </form>
+                    </div>
+                    @Html.Partial("TinTucIndex")
+
+                </aside>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    function ThemGioHang(masp) {
+
+        $.ajax({
+            url: '/GioHang/ThemVaoGioHang/?id=' + masp + '&soLuong=' + 1 + '',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var json = JSON.parse(data);
+                alert(json);
+                window.location.reload();
+            },
+            error: function (err) {
+                alert("Đã xảy ra lỗi"+err.responseText);
+            }
+        });
+    };
+</script>

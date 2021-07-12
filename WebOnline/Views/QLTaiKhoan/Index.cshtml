@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+@using WebOnline.Models
+@model List<WebOnline.Models.TaiKhoan>
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.btn-active').off('click').on('click', function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("ChangeStatus")',
+                data: { id: id },
+                dataType: "json",
+                type: "POST",
+                success: function (res) {
+                    window.location.reload();
+                }
+            });
+
+        });
+    });
+</script>
+<h1 class="page-header">
+    <a href="/QLTaiKhoan/ThemTk" class="btn btn-outline btn-primary">Thêm</a>
+</h1>
+<div class="dataTable_wrapper">
+    <table class="table table-striped table-bordered table-hover" id="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên</th>
+                <th>Mật khẩu</th>
+                <th>Sửa</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    <tr class="even gradeA">
+                        <td>@Model[i].MaTaiKhoan</td>
+                        <td>@Model[i].TaiKhoan1</td>
+                        <td>@Model[i].MatKhau</td>
+                        <td>
+                            @if (Model[i].Status == true)
+                            {
+                                <a href="#" class=" status btn-active" id="status" data-id="@Model[i].MaTaiKhoan">Kích hoạt</a>
+                            }
+                            else
+                            {
+                                <a href="#" class=" status btn-active"  id="status" data-id="@Model[i].MaTaiKhoan">Khóa</a>
+                            }
+
+                        </td>
+                        <td><a href="/QLTaiKhoan/SuaTk/@Model[i].MaTaiKhoan" class="btn btn-outline btn-primary">Sửa</a></td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="odd gradeA">
+
+                        <td>@Model[i].MaTaiKhoan</td>
+                        <td>@Model[i].TaiKhoan1</td>
+                        <td>@Model[i].MatKhau</td>
+                        <td>
+                            @if (Model[i].Status == true)
+                            {
+                                <a href="#" class=" status btn-active" id="status"  data-id="@Model[i].MaTaiKhoan">Kích hoạt</a>
+                            }
+                            else
+                            {
+                                <a href="#" class=" status btn-active" id="status" data-id="@Model[i].MaTaiKhoan">Khóa</a>
+                            }
+
+                        </td>
+                        <td><a href="/QLTaiKhoan/SuaTk/@Model[i].MaTaiKhoan" class="btn btn-outline btn-primary">Sửa</a></td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/sb-admin-2.js"></script>*@
+
+
+
